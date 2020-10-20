@@ -1,0 +1,60 @@
+<!-- Describe task in general -->
+
+<p>
+    Усложнением 6ой миссии серии является то, что теперь, для освежения помещения может быть нужно более одной лампочки. И это 5ый аргумент функции - сколько лампочек нужно для освежения помещения
+</p>
+
+<p>
+    Например, если для освещения помещения нужно 3 лампочки, то мы не защитываем то время, когда лампочек было всего 2 или только одна. Если последний аргумент функции не передан, значит достаточно одной лампочки для освежения помещения.
+</p>
+
+<p>
+    задача все таже - узнать сколько времени помещение было освещено (в этой задаче можно сказать - достаточно освещено)
+</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
+</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input: </strong> Two arguments. Both are ints.
+</p>
+
+<p>
+    <strong>Output: </strong> Int. 
+</p>
+
+
+<!-- Give some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+
+{% if interpreter.slug == "js-node" %}
+<pre class="brush: javascript">sumTwo(2, 3) == 5
+sumTwo(5, 7) == 12
+</pre>
+{% else %}
+<pre class="brush: python">sum_two(2, 3) == 5
+sum_two(5, 7) == 12
+</pre>
+{% endif %}
+</div>
+
+
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<p class="for_info_only">
+
+    <strong>How it’s used: </strong>
+    <i>(math is used everywhere)</i>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Precondition:</strong>
+    <i>both given ints should be between -1000 and 1000</i>
+</p>

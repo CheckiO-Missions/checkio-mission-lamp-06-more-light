@@ -12,17 +12,18 @@
 The task is still the same - to find out how long the room was lit (in this task, we can say - sufficiently lit).
 </p>
 
-<p style="text-align: center;">
-    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
-</p>
-
-<!-- Explain input and output values -->
-<p>
-    <strong>Input: </strong> Two arguments. Both are ints.
+<p style="text-align: center;" class="for_info_only">
+    <img  title="example" src="{{MEDIA}}composition.gif" alt="example" style="max-height: 400px"/>
 </p>
 
 <p>
-    <strong>Output: </strong> An int. 
+    <strong>Input: </strong> 
+    Five arguments and only the first one is required. 
+    The first one <i>(els)</i> is {% if is_js %}an array of Date objects (instead of Date object there can be an array of two Date and number){% else %}a list of datetime objects (instead of datetime object there can be a tuple of two datetime and int){% endif %}, the second <i>(start_watching)</i> and the third ones <i>(end_watching)</i> are {% if is_js %}the Date objects or undefined{% else %}the datetime objects{% endif %}. The forth argument <i>(operating)</i> - {% if is_js %}timedelta object{% else %}integer{% endif %} - how long the lamp can work. The 5th argument is an positive non-zero int.
+</p>
+
+<p>
+    <strong>Output: </strong> A number of seconds as an integer. 
 </p>
 
 
@@ -32,29 +33,49 @@ The task is still the same - to find out how long the room was lit (in this task
         <strong>Example:</strong>
     </p>
 
-{% if interpreter.slug == "js-node" %}
+{% if is_js %}
 <pre class="brush: javascript">sumTwo(2, 3) == 5
 sumTwo(5, 7) == 12
 </pre>
 {% else %}
-<pre class="brush: python">sum_two(2, 3) == 5
-sum_two(5, 7) == 12
+<pre class="brush: python">sum_light([
+    (datetime(2015, 1, 12, 10, 0, 10), 3),
+    datetime(2015, 1, 12, 10, 0, 20),
+    (datetime(2015, 1, 12, 10, 0, 30), 3),
+    (datetime(2015, 1, 12, 10, 0, 30), 2),
+    datetime(2015, 1, 12, 10, 0, 40),
+    (datetime(2015, 1, 12, 10, 0, 50), 2),
+], req=2) == 20
+
+sum_light([
+    (datetime(2015, 1, 12, 10, 0, 10), 3),
+    datetime(2015, 1, 12, 10, 0, 20),
+    (datetime(2015, 1, 12, 10, 0, 30), 3),
+    (datetime(2015, 1, 12, 10, 0, 30), 2),
+    datetime(2015, 1, 12, 10, 0, 40),
+    (datetime(2015, 1, 12, 10, 0, 50), 2),
+], req=3) == 0
+
+sum_light([
+    (datetime(2015, 1, 12, 10, 0, 10), 3),
+    datetime(2015, 1, 12, 10, 0, 20),
+    (datetime(2015, 1, 12, 10, 0, 50), 3),
+    (datetime(2015, 1, 12, 10, 0, 30), 2),
+    datetime(2015, 1, 12, 10, 0, 40),
+    (datetime(2015, 1, 12, 10, 0, 50), 2),
+], req=3) == 10
 </pre>
 {% endif %}
 </div>
 
 
-<!-- Here you can explain how it can be used in development -->
-<!-- The section is optional -->
-<p class="for_info_only">
-
-    <strong>How it’s used: </strong>
-    <i>(math is used everywhere)</i>
-</p>
-
-<!-- Here you can explain some constraints for input-->
-<!-- The section is optional -->
 <p>
     <strong>Precondition:</strong>
-    <i>both given ints should be between -1000 and 1000</i>
 </p>
+<ul>
+    <li><i>The array of pressing the button is always sorted in ascending order.</i></li>
+    <li><i>The array of pressing the button has no repeated elements.</i></li>
+    <li><i>The minimum possible date is 1970-01-01</i></li>
+    <li><i>The maximum possible date is 9999-12-31</i></li>
+    <li><i>req arguments is positive and non zero</i></li>
+</ul>

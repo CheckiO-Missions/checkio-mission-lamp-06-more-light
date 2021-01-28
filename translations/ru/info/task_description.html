@@ -12,17 +12,17 @@
     Задача все та же - узнать сколько времени помещение было освещено (в этой задаче можно сказать - достаточно освещено).
 </p>
 
-<p style="text-align: center;">
-    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
-</p>
-
-<!-- Explain input and output values -->
-<p>
-    <strong>Input: </strong> Two arguments. Both are ints.
+<p style="text-align: center;" class="for_info_only">
+    <img  title="example" src="{{MEDIA}}composition.gif" alt="example" style="max-height: 400px"/>
 </p>
 
 <p>
-    <strong>Output: </strong> An int. 
+    <strong>Input: </strong>Пять аргументов и только первый обязательный. Первый – {% if is_js %}an array of Date objects (вместо Date может быть [Date, number]){% else %}a list of datetime objects(вместо datetime может быть [datetime, int]){% endif %}, а второй и третий –  {% if is_js %}the Date objects{% else %}the datetime objects{% endif %}. Четвертый аргумент <i>(operating)</i> - {% if is_js %}timedelta object{% else %}integer{% endif %} - как долго работала лампочка. Пятый аргумент - положительный int
+
+</p>
+
+<p>
+    <strong>Output: </strong> A number of seconds as an integer. 
 </p>
 
 
@@ -32,29 +32,49 @@
         <strong>Example:</strong>
     </p>
 
-{% if interpreter.slug == "js-node" %}
+{% if is_js %}
 <pre class="brush: javascript">sumTwo(2, 3) == 5
 sumTwo(5, 7) == 12
 </pre>
 {% else %}
-<pre class="brush: python">sum_two(2, 3) == 5
-sum_two(5, 7) == 12
+<pre class="brush: python">sum_light([
+    (datetime(2015, 1, 12, 10, 0, 10), 3),
+    datetime(2015, 1, 12, 10, 0, 20),
+    (datetime(2015, 1, 12, 10, 0, 30), 3),
+    (datetime(2015, 1, 12, 10, 0, 30), 2),
+    datetime(2015, 1, 12, 10, 0, 40),
+    (datetime(2015, 1, 12, 10, 0, 50), 2),
+], req=2) == 20
+
+sum_light([
+    (datetime(2015, 1, 12, 10, 0, 10), 3),
+    datetime(2015, 1, 12, 10, 0, 20),
+    (datetime(2015, 1, 12, 10, 0, 30), 3),
+    (datetime(2015, 1, 12, 10, 0, 30), 2),
+    datetime(2015, 1, 12, 10, 0, 40),
+    (datetime(2015, 1, 12, 10, 0, 50), 2),
+], req=3) == 0
+
+sum_light([
+    (datetime(2015, 1, 12, 10, 0, 10), 3),
+    datetime(2015, 1, 12, 10, 0, 20),
+    (datetime(2015, 1, 12, 10, 0, 50), 3),
+    (datetime(2015, 1, 12, 10, 0, 30), 2),
+    datetime(2015, 1, 12, 10, 0, 40),
+    (datetime(2015, 1, 12, 10, 0, 50), 2),
+], req=3) == 10
 </pre>
 {% endif %}
 </div>
 
-
-<!-- Here you can explain how it can be used in development -->
-<!-- The section is optional -->
-<p class="for_info_only">
-
-    <strong>How it’s used: </strong>
-    <i>(math is used everywhere)</i>
-</p>
-
-<!-- Here you can explain some constraints for input-->
-<!-- The section is optional -->
 <p>
-    <strong>Precondition:</strong>
-    <i>both given ints should be between -1000 and 1000</i>
+    <strong>Предусловия:</strong>
 </p>
+
+<ul>
+    <li><i>Массив нажатий на кнопку всегда отсортирован по возрастанию</i></li>
+    <li><i>В массиве нажатий на кнопку нет повторяющихся элементов</i></li>
+    <li><i>Количество элементов всегда четное число (это значит, что лампочка, в конце концов, будет выключена)</i></li>
+    <li><i>Минимально возможная дата 1970-01-01</i></li>
+    <li><i>req > 0</i></li>
+</ul>

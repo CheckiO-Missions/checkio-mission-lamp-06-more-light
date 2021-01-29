@@ -1,3 +1,4 @@
+
 <!-- Describe task in general -->
 
 <p>
@@ -19,7 +20,7 @@ The task is still the same - to find out how long the room was lit (in this task
 <p>
     <strong>Input: </strong> 
     Five arguments and only the first one is required. 
-    The first one <i>(els)</i> is {% if is_js %}an array of Date objects (instead of Date object there can be an array of two Date and number){% else %}a list of datetime objects (instead of datetime object there can be a tuple of two datetime and int){% endif %}, the second <i>(start_watching)</i> and the third ones <i>(end_watching)</i> are {% if is_js %}the Date objects or undefined{% else %}the datetime objects{% endif %}. The forth argument <i>(operating)</i> - {% if is_js %}timedelta object{% else %}integer{% endif %} - how long the lamp can work. The 5th argument is an positive non-zero int.
+    The first one <i>(els)</i> is {% if is_js %}an array of Date objects (instead of Date object there can be an array of two Date and number){% else %}a list of datetime objects (instead of datetime object there can be a tuple of two datetime and int){% endif %}, the second <i>(start_watching)</i> and the third ones <i>(end_watching)</i> are {% if is_js %}the Date objects or undefined{% else %}the datetime objects{% endif %}. The forth argument <i>(operating)</i> - {% if is_js %}timedelta object{% else %}integer{% endif %} - how long the lamp can work. The 5th argument is a positive non-zero int.
 </p>
 
 <p>
@@ -77,5 +78,5 @@ sum_light([
     <li><i>The array of pressing the button has no repeated elements.</i></li>
     <li><i>The minimum possible date is 1970-01-01</i></li>
     <li><i>The maximum possible date is 9999-12-31</i></li>
-    <li><i>req arguments is positive and non zero</i></li>
+    <li><i>req arguments is positive and non-zero</i></li>
 </ul>

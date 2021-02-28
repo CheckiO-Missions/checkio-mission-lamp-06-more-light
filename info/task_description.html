@@ -35,8 +35,33 @@ The task is still the same - to find out how long the room was lit (in this task
     </p>
 
 {% if is_js %}
-<pre class="brush: javascript">sumTwo(2, 3) == 5
-sumTwo(5, 7) == 12
+<pre class="brush: javascript">
+sumLight([
+    [new Date(2015, 1, 12, 10, 0, 10), 3],
+    new Date(2015, 1, 12, 10, 0, 20),
+    [new Date(2015, 1, 12, 10, 0, 30), 3],
+    [new Date(2015, 1, 12, 10, 0, 30), 2],
+    new Date(2015, 1, 12, 10, 0, 40),
+    [new Date(2015, 1, 12, 10, 0, 50), 2],
+], undefined, undefined, undefined, 2) == 20
+
+sumLight([
+    [new Date(2015, 1, 12, 10, 0, 10), 3],
+    new Date(2015, 1, 12, 10, 0, 20),
+    [new Date(2015, 1, 12, 10, 0, 30), 3],
+    [new Date(2015, 1, 12, 10, 0, 30), 2],
+    new Date(2015, 1, 12, 10, 0, 40),
+    [new Date(2015, 1, 12, 10, 0, 50), 2],
+], undefined, undefined, undefined, 3) == 0
+
+sumLight([
+    [new Date(2015, 1, 12, 10, 0, 10), 3],
+    new Date(2015, 1, 12, 10, 0, 20),
+    [new Date(2015, 1, 12, 10, 0, 30), 2],
+    [new Date(2015, 1, 12, 10, 0, 50), 3],
+    new Date(2015, 1, 12, 10, 0, 40),
+    [new Date(2015, 1, 12, 10, 0, 50), 2],
+], undefined, undefined, undefined, 3) == 10
 </pre>
 {% else %}
 <pre class="brush: python">sum_light([
@@ -60,8 +85,8 @@ sum_light([
 sum_light([
     (datetime(2015, 1, 12, 10, 0, 10), 3),
     datetime(2015, 1, 12, 10, 0, 20),
-    (datetime(2015, 1, 12, 10, 0, 50), 3),
     (datetime(2015, 1, 12, 10, 0, 30), 2),
+    (datetime(2015, 1, 12, 10, 0, 50), 3),
     datetime(2015, 1, 12, 10, 0, 40),
     (datetime(2015, 1, 12, 10, 0, 50), 2),
 ], req=3) == 10

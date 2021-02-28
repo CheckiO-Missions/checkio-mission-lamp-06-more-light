@@ -331,8 +331,8 @@ assert.equal(sumLight([
 assert.equal(sumLight([
     [new Date(2015, 1, 12, 10, 0, 10), 3],
     new Date(2015, 1, 12, 10, 0, 20),
-    [new Date(2015, 1, 12, 10, 0, 50), 3],
     [new Date(2015, 1, 12, 10, 0, 30), 2],
+    [new Date(2015, 1, 12, 10, 0, 50), 3],
     new Date(2015, 1, 12, 10, 0, 40),
     [new Date(2015, 1, 12, 10, 0, 50), 2],
 ], undefined, undefined, undefined, 3), 10);

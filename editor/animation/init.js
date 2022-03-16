@@ -77,7 +77,7 @@ requirejs(['ext_editor_io', 'jquery_190'],
 
             
 
-            return els + start_watching + end_watching + operating;
+            return els + start_watching + end_watching + operating + req;
         }
         io.start();
     }
